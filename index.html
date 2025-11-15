@@ -447,7 +447,7 @@
             font-size: 14px;
         }
 
-        @media (max-width: 768px) {
+@media (max-width: 768px) {
     .portfolio-hero {
         padding: 20px 0;
         margin-bottom: 60px;
@@ -492,6 +492,22 @@
     /* Fix flex items with min-width */
     [style*="min-width: 250px"] {
         min-width: 100% !important;
+    }
+    
+    /* Fix demo areas and canvases */
+    .demo-area {
+        padding: 16px;
+        min-height: auto;
+    }
+    
+    canvas {
+        max-width: 100% !important;
+        height: auto !important;
+    }
+    
+    /* Make turtle grid single column on mobile */
+    .turtle-grid {
+        grid-template-columns: 1fr !important;
     }
 }
     </style>
@@ -975,6 +991,7 @@ for (let i = 0; i < 5; i++) {
 </body>
 
 </html>
+
 
 
 

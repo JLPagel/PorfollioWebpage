@@ -448,33 +448,52 @@
         }
 
         @media (max-width: 768px) {
-            .portfolio-hero h1 {
-                font-size: 56px;
-                letter-spacing: -3px;
-            }
+    .portfolio-hero {
+        padding: 20px 0;
+        margin-bottom: 60px;
+    }
+    
+    .portfolio-hero h1 {
+        font-size: 56px;
+        letter-spacing: -3px;
+    }
 
-            .section-title {
-                font-size: 36px;
-            }
+    .section-title {
+        font-size: 36px;
+    }
+    
+    .section {
+        margin-bottom: 80px;
+    }
 
-            .projects-grid,
-            .interactive-grid {
-                grid-template-columns: 1fr;
-            }
+    .projects-grid,
+    .interactive-grid {
+        grid-template-columns: 1fr !important;
+    }
 
-            nav {
-                padding: 14px 24px;
-            }
+    nav {
+        padding: 14px 24px;
+    }
 
-            .container {
-                padding: 120px 24px 40px;
-            }
+    .container {
+        padding: 120px 20px 40px;
+    }
 
-            .github-card,
-            .interactive-card {
-                padding: 40px 24px;
-            }
-        }
+    .github-card,
+    .interactive-card {
+        padding: 32px 20px;
+    }
+    
+    /* Fix inline grid styles on mobile */
+    [style*="grid-template-columns"] {
+        grid-template-columns: 1fr !important;
+    }
+    
+    /* Fix flex items with min-width */
+    [style*="min-width: 250px"] {
+        min-width: 100% !important;
+    }
+}
     </style>
 	    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-9Y70LB7TT1"></script>
@@ -956,6 +975,7 @@ for (let i = 0; i < 5; i++) {
 </body>
 
 </html>
+
 
 
 

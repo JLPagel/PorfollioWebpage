@@ -238,7 +238,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
         .project-image {
             width: 100%;
-            height: 240px;
+            height: 280px;
             background: linear-gradient(135deg, rgba(236, 72, 153, 0.2), rgba(244, 114, 182, 0.2));
             display: flex;
             align-items: center;
@@ -624,6 +624,19 @@ footer::before {
 
 .expand-btn svg {
     transition: transform 0.3s ease;
+}
+
+		/* Responsive project images */
+@media (min-width: 768px) {
+    .project-image {
+        height: 320px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .project-image {
+        height: 360px;
+    }
 }
 		
     </style>
@@ -1109,6 +1122,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
 </html>
+
 
 
 

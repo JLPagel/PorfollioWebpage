@@ -39,9 +39,6 @@ To deploy updates:
 
 ## 🤝 Contact
 
-For collaborations, coaching, or custom web builds:  
-📧 jlpagel4@gmail.com  
-🔗 [LinkedIn](https://www.linkedin.com/in/jenniferpagel)  
-📹 [YouTube Channel](https://www.youtube.com/@jlpdevelopment)
+
 
 ---

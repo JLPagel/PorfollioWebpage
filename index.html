@@ -847,6 +847,170 @@ footer::before {
             </div>
 
         <!-- Interactive Demos Section -->
+
+			
+			<!-- TEST-->
+
+			<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Loop Step Visualizer</title>
+  <style>
+    body { font-family: sans-serif; display: flex; gap: 20px; padding: 20px; }
+    pre { background: #111827; color: #e5e7eb; padding: 10px; border-radius: 6px; }
+    .highlight { background: #374151; }
+    .panel { border: 1px solid #d1d5db; padding: 10px; border-radius: 6px; width: 260px; }
+    .label { font-weight: bold; }
+    button { margin-top: 10px; padding: 6px 12px; }
+  </style>
+</head>
+<body>
+  <div>
+    <pre id="code-block"><code>
+total = 0
+for num in [1, 2, 3]:
+    total = total + num
+print(total)
+    </code></pre>
+    <button id="next-btn">Next step</button>
+    <button id="reset-btn">Reset</button>
+  </div>
+
+  <div class="panel">
+    <div><span class="label">numbers:</span> <span id="numbers-display">[1, 2, 3]</span></div>
+    <div><span class="label">num:</span> <span id="num-display">-</span></div>
+    <div><span class="label">total:</span> <span id="total-display">0</span></div>
+    <div><span class="label">steps:</span> <span id="steps-display">0</span></div>
+  </div>
+
+  <script>
+    const codeLines = [
+      "total = 0",
+      "for num in [1, 2, 3]:",
+      "    total = total + num",
+      "print(total)"
+    ];
+
+    const numbers = [1, 2, 3];
+
+    // Build code block with spans so we can highlight lines
+    const codeBlock = document.getElementById("code-block");
+    const codeHtml = codeLines
+      .map((line, idx) => `<div data-line="${idx}">${line}</div>`)
+      .join("");
+    codeBlock.innerHTML = codeHtml;
+
+    const numDisplay = document.getElementById("num-display");
+    const totalDisplay = document.getElementById("total-display");
+    const stepsDisplay = document.getElementById("steps-display");
+    const nextBtn = document.getElementById("next-btn");
+    const resetBtn = document.getElementById("reset-btn");
+
+    let stepIndex = 0;
+    let total = 0;
+    let currentIdx = -1;
+    let steps = 0;
+
+    function highlightLine(lineIndex) {
+      const lines = codeBlock.querySelectorAll("div");
+      lines.forEach(l => l.classList.remove("highlight"));
+      if (lineIndex >= 0 && lineIndex < lines.length) {
+        lines[lineIndex].classList.add("highlight");
+      }
+    }
+
+    function updateDisplays() {
+      totalDisplay.textContent = total;
+      stepsDisplay.textContent = steps;
+      numDisplay.textContent = currentIdx >= 0 && currentIdx < numbers.length
+        ? numbers[currentIdx]
+        : "-";
+    }
+
+    function resetState() {
+      stepIndex = 0;
+      total = 0;
+      currentIdx = -1;
+      steps = 0;
+      highlightLine(-1);
+      updateDisplays();
+    }
+
+    function nextStep() {
+      steps++;
+
+      // Sequence of logical steps:
+      // 0: total = 0
+      // 1: loop check -> num = 1
+      // 2: total = total + num
+      // 3: loop check -> num = 2
+      // 4: total = total + num
+      // 5: loop check -> num = 3
+      // 6: total = total + num
+      // 7: loop check -> no more, exit
+      // 8: print(total)
+
+      switch (stepIndex) {
+        case 0:
+          // total = 0
+          total = 0;
+          highlightLine(0);
+          break;
+        case 1:
+          // loop check, get first num
+          currentIdx = 0;
+          highlightLine(1);
+          break;
+        case 2:
+          // total = total + num
+          total = total + numbers[currentIdx];
+          highlightLine(2);
+          break;
+        case 3:
+          currentIdx = 1;
+          highlightLine(1);
+          break;
+        case 4:
+          total = total + numbers[currentIdx];
+          highlightLine(2);
+          break;
+        case 5:
+          currentIdx = 2;
+          highlightLine(1);
+          break;
+        case 6:
+          total = total + numbers[currentIdx];
+          highlightLine(2);
+          break;
+        case 7:
+          // final loop check: no more numbers
+          currentIdx = -1;
+          highlightLine(1);
+          break;
+        case 8:
+          // print(total)
+          highlightLine(3);
+          alert("print(total) -> " + total);
+          break;
+        default:
+          alert("End of steps");
+          return;
+      }
+
+      stepIndex++;
+      updateDisplays();
+    }
+
+    nextBtn.addEventListener("click", nextStep);
+    resetBtn.addEventListener("click", resetState);
+
+    resetState();
+  </script>
+</body>
+</html>
+
+			<!-- Begin Demo Section-->
         <div class="section">
             <div class="section-header">
                 <h2 class="section-title">Interactive Demos</h2>
@@ -1174,6 +1338,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
 </html>
+
 
 
 
